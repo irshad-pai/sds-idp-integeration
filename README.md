@@ -1,1 +1,10 @@
-#sds-idp-integeration
+# Keycloak
+
+Two keycloak servers to configure multiple Identity Providers, in order to bring users from external buckets with no need for users to go through the registration process.
+
+The information can be found in this article: 
+
+https://antonioberben.gitlab.io/website/posts/keycloak-idp/
+
+
+http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_id=sds-insight-api&scope=openid&response_type=code&redirect_uri=http://localhost:8000/sds.html
