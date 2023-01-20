@@ -11,3 +11,7 @@ http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_i
 
 
 http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_id=sds-insight-api&redirect_uri=http://localhost:8000/sds.html&scope=openid&response_type=code
+
+
+Keycloak007
+keycloakkey591@gmail.com
