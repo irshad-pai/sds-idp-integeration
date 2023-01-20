@@ -8,3 +8,6 @@ https://antonioberben.gitlab.io/website/posts/keycloak-idp/
 
 
 http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_id=sds-insight-api&scope=openid&response_type=code&redirect_uri=http://localhost:8000/sds.html
+
+
+http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_id=sds-insight-api&redirect_uri=http://localhost:8000/sds.html&scope=openid&response_type=code
