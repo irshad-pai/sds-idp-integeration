@@ -1,42 +1,31 @@
-version: '3'
-services:
-  sds-auth-server:
-    image: "jboss/keycloak:10.0.2"
-    container_name: sds-idp
-    networks:
-      - keycloak-network
-    ports:
-      - "8180:8080"
-    volumes:
-      - ./realms:/tmp/realms
-      - ./.keycloak_sds:/opt/jboss/keycloak/standalone/data/
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-      # KEYCLOAK_IMPORT: /tmp/realms/sds_auth_realm.json
-    extra_hosts:
-      sds.idp.com: 172.23.0.1
-      telstra.idp.com: 172.23.0.1
-    networks:
-      - keycloak-network
 
-  telstra-auth-server:
-    image: "jboss/keycloak:10.0.2"
-    container_name: telstra-idp
-    ports:
-      - "8280:8080"
-    volumes:
-      - ./realms:/tmp/realms
-      - ./.keycloak_telstra:/opt/jboss/keycloak/standalone/data/
-    environment:
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: admin
-      # KEYCLOAK_IMPORT: /tmp/realms/telstra_auth_realm.json
-    extra_hosts:
-      sds.idp.com: 172.23.0.1
-      telstra.idp.com: 172.23.0.1
-    networks:
-      - keycloak-network
-networks:
-  keycloak-network:
-    driver: bridge
+version: '3'
+
+
+services:
+  mysql:
+      image: mysql:5.7
+      volumes:
+        - ./.mysql_data:/var/lib/mysql
+      environment:
+        MYSQL_ROOT_PASSWORD: root
+        MYSQL_DATABASE: keycloak
+        MYSQL_USER: keycloak
+        MYSQL_PASSWORD: password
+  keycloak:
+      command: start-dev
+      image: quay.io/keycloak/keycloak:20.0.3
+      ports:
+      - "8081:8080"
+      environment:
+        DB_VENDOR: MYSQL
+        DB_ADDR: mysql
+        DB_DATABASE: keycloak
+        DB_USER: keycloak
+        DB_PASSWORD: password
+        KEYCLOAK_USER: admin
+        KEYCLOAK_PASSWORD: admin
+        KEYCLOAK_ADMIN: admin
+        KEYCLOAK_ADMIN_PASSWORD: admin
+      depends_on:
+        - mysql

@@ -15,3 +15,7 @@ http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/auth?client_i
 
 Keycloak007
 keycloakkey591@gmail.com
+
+
+
+access_token=`curl http://sds.idp.com:8180/auth/realms/master/protocol/openid-connect/token -XPOST -d 'grant_type=client_credentials' -u 'admin:admin' | jq -r .access_token`
