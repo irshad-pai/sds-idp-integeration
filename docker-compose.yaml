@@ -2,25 +2,6 @@
 version: '3'
 
 services:
-  # postgres_new:
-  #     image: postgres
-  #     volumes:
-  #      - ./data-new:/var/lib/postgresql/data/
-  #     environment:
-  #       POSTGRES_DB: keycloak
-  #       POSTGRES_USER: keycloak
-  #       POSTGRES_PASSWORD: password
-
-  # mariadb_new:
-  #     image: mariadb
-  #     volumes:
-  #       - ./mariadb_data:/var/lib/mysql/:ro
-  #     environment:
-  #       MYSQL_ROOT_PASSWORD: root
-  #       MYSQL_DATABASE: keycloak
-  #       MYSQL_USER: keycloak
-  #       MYSQL_PASSWORD: password
-
   keycloak:
       command: start-dev
       image: quay.io/keycloak/keycloak:20.0.3
@@ -29,25 +10,5 @@ services:
       ports:
       - "8081:8080"
       environment:
-        # DB_VENDOR: POSTGRES
-        # DB_ADDR: postgres_new
-        # DB_DATABASE: keycloak
-        # DB_USER: keycloak
-        # KEYCLOAK_ADMIN : admin
-        # KEYCLOAK_ADMIN_PASSWORD: admin
-        # DB_SCHEMA: public
-        # DB_PASSWORD: password
-
-        # DB_VENDOR: mariadb
-        # DB_ADDR: mariadb_new
-        # DB_DATABASE: keycloak
-        # DB_USER: keycloak
-        # DB_PASSWORD: password
-        # KEYCLOAK_USER: admin
         KEYCLOAK_ADMIN: admin
         KEYCLOAK_ADMIN_PASSWORD: admin
-
-        # KEYCLOAK_USER: admin
-        # KEYCLOAK_PASSWORD: admin
-      # depends_on:
-        # - mariadb_new
